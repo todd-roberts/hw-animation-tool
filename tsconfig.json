@@ -5,5 +5,6 @@
     "outDir": "dist",
     "rootDir": "src",
     "strict": true
-  }
+  },
+  "exclude": ["output"]
 }

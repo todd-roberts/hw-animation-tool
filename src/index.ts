@@ -16,7 +16,7 @@ const getGLTFFromInput = (): string | null => {
   return files.length > 0 ? path.join(INPUT_DIR, files[0]) : null;
 };
 
-const main = () => {
+const main = async () => {
   const gltfFile = getGLTFFromInput();
 
   if (!gltfFile) {
@@ -25,7 +25,7 @@ const main = () => {
   }
 
   console.log(`🔍 Processing file: ${gltfFile}`);
-  const parsedData = parseGLTF(gltfFile);
+  const parsedData = await parseGLTF(gltfFile);
 
   if (!parsedData) {
     console.error("❌ Failed to parse animations.");
@@ -48,7 +48,7 @@ const main = () => {
     parsedData,
     null,
     2
-  )} as const;`;
+  )} as AnimationData;`;
   fs.writeFileSync(tsOutputFile, tsContent);
 
   console.log(`✅ JSON output written: ${jsonOutputFile}`);
